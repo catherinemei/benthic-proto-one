@@ -135,7 +135,15 @@ export function TraversalOutputComponentKeyboardParentFocus(
       event.preventDefault();
     } else if (event.key === "a") {
       const titleSection = document.getElementById(`home`);
-      titleSection?.focus();
+
+      const lastNodeId = history()[history().length - 1];
+      const lastNodeButton = document.getElementById(`info-${lastNodeId}`);
+
+      if (lastNodeButton) {
+        lastNodeButton.focus();
+      } else {
+        titleSection?.focus();
+      }
     } else if (event.key === "d") {
       const parents = props.nodeGraph[currentNodeId()!].parents;
       if (parents.length > 0) {
@@ -352,21 +360,9 @@ export function HypergraphNodeComponentKeyboardOnly(
     return adjacentNodes;
   });
 
-  const generateAriaLabel = createMemo(() => {
-    // collect name of all children nodes
-    const allChildren = sortedChildren();
-    const childrenNames = allChildren
-      .map((childNode) => childNode.descriptionTokens?.label)
-      .join(", ");
-
-    const nodeDescription =
-      childrenNames.length > 0 ? "contains " + childrenNames : "";
-    return `${props.node.displayName} node with ${props.node.parents.length} parent and ${props.node.children.length} children nodes; ${nodeDescription}`;
-  });
-
   return (
     <div style={{ padding: "20px" }}>
-      <div id={`home`} aria-label={generateAriaLabel()} tabindex="0">
+      <div id={`home`} tabindex="0">
         <For
           each={sortAdjacents()}
           fallback={
@@ -386,7 +382,7 @@ export function HypergraphNodeComponentKeyboardOnly(
               style={{ "margin-right": "5px" }}
               aria-label={`Node ${idx() + 1} of ${sortAdjacents().length}; ${
                 adjacent.displayName
-              }`}
+              }; ${adjacent.descriptionTokens?.longDescription}`}
               id={`info-${adjacent.id}`}
             >
               <span aria-hidden={true}>{adjacent.displayName}</span>
