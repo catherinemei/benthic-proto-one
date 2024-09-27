@@ -11,8 +11,4 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   );
 }
 
-const path = window.location.pathname;
-
-const pathPrefix = path.includes("benthic") ? "/benthic" : "";
-
 render(() => <App />, root!);

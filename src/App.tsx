@@ -4,9 +4,6 @@ import { TraversalOutputComponentKeyboardParentFocus } from "./priority-traversa
 import { stackedBarChartHypergraph } from "./input-data";
 
 const App: Component = () => {
-  const path = window.location.pathname;
-
-  const pathPrefix = path.includes("benthic") ? "/benthic" : "";
   return (
     <TraversalOutputComponentKeyboardParentFocus
       nodeGraph={stackedBarChartHypergraph}
