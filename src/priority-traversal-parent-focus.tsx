@@ -62,7 +62,7 @@ export function TraversalOutputComponentKeyboardParentFocus(
   };
 
   const handleKeyPress = (event: KeyboardEvent) => {
-    if (event.key === "u") {
+    if (event.key === "w") {
       // Navigate up through the parent focus using history
       const historyList = history();
       if (historyList.length > 2) {
@@ -110,7 +110,7 @@ export function TraversalOutputComponentKeyboardParentFocus(
         parentSection?.focus();
       }
       event.preventDefault();
-    } else if (event.key === "d") {
+    } else if (event.key === "s") {
       // Directly navigate to first child if children exist
       // If not, then select entire group and announce that no children exist
 
@@ -133,10 +133,10 @@ export function TraversalOutputComponentKeyboardParentFocus(
         }
       }
       event.preventDefault();
-    } else if (event.key === "t") {
+    } else if (event.key === "a") {
       const titleSection = document.getElementById(`home`);
       titleSection?.focus();
-    } else if (event.key === "s") {
+    } else if (event.key === "d") {
       const parents = props.nodeGraph[currentNodeId()!].parents;
       if (parents.length > 0) {
         // Get the current parent index from history, and cycle to the next parent
@@ -151,6 +151,7 @@ export function TraversalOutputComponentKeyboardParentFocus(
 
         const switchingFocus = document.getElementById("switch-focus");
         if (switchingFocus) {
+          switchingFocus.innerHTML = `Switching parent to ${props.nodeGraph[nextParentId].displayName}`;
           switchingFocus.focus();
         }
 
@@ -160,7 +161,7 @@ export function TraversalOutputComponentKeyboardParentFocus(
           if (curNodeSection) {
             curNodeSection.focus();
           }
-        }, 700);
+        }, 1400);
       }
       event.preventDefault();
     } else if (event.key === "Backspace") {
