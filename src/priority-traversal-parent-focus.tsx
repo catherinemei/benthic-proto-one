@@ -62,7 +62,7 @@ export function TraversalOutputComponentKeyboardParentFocus(
   };
 
   const handleKeyPress = (event: KeyboardEvent) => {
-    if (event.key === "w") {
+    if (event.key === "ArrowUp" && event.shiftKey) {
       // Navigate up through the parent focus using history
       const historyList = history();
       if (historyList.length > 2) {
@@ -110,7 +110,7 @@ export function TraversalOutputComponentKeyboardParentFocus(
         parentSection?.focus();
       }
       event.preventDefault();
-    } else if (event.key === "s") {
+    } else if (event.key === "ArrowDown" && event.shiftKey) {
       // Directly navigate to first child if children exist
       // If not, then select entire group and announce that no children exist
 
