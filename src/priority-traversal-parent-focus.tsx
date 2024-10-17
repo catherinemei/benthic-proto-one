@@ -133,7 +133,7 @@ export function TraversalOutputComponentKeyboardParentFocus(
         }
       }
       event.preventDefault();
-    } else if (event.key === "a") {
+    } else if (event.key === "h") {
       const titleSection = document.getElementById(`home`);
 
       const lastNodeId = history()[history().length - 1];
@@ -144,7 +144,7 @@ export function TraversalOutputComponentKeyboardParentFocus(
       } else {
         titleSection?.focus();
       }
-    } else if (event.key === "d") {
+    } else if (event.key === "p") {
       const parents = props.nodeGraph[currentNodeId()!].parents;
       if (parents.length > 0) {
         // Get the current parent index from history, and cycle to the next parent
