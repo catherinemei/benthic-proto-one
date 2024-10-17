@@ -175,7 +175,8 @@ export function TraversalOutputComponentKeyboardParentFocus(
     } else if (event.key === "Backspace") {
       setHistory((prev) => {
         const newHistory = [...prev];
-        const previousNodeId = newHistory.pop();
+        const currentNode = newHistory.pop();
+        const previousNodeId = newHistory[newHistory.length - 1];
 
         if (previousNodeId) {
           // used to announce undo action
